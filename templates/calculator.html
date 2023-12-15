@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        input[type="text"], select {
+            padding: 10px;
+            margin: 10px 0;
+            width: calc(100% - 20px);
+            box-sizing: border-box;
+            border: none;
+            background-color: #555;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            padding: 15px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Beautiful Calculator</h2>
+        <form method="post" action="{% url 'page:calculator' %}">
+            {% csrf_token %}
+            <input type="text" name="num1" placeholder="Number 1" required><br>
+            <input type="text" name="num2" placeholder="Number 2" required><br>
+            <select name="op" required>
+                <option value="+">Addition (+)</option>
+                <option value="-">Subtraction (-)</option>
+                <option value="*">Multiplication (*)</option>
+                <option value="/">Division (/)</option>
+            </select><br>
+            <input type="submit" value="Calculate">
+        </form>
+        <div class="result" id="result"><h1>{{ result }}</h1></div>
+        <div class="result"><h1>History</h1></div>
+    </div>
+
+</body>
+</html>
